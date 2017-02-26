@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="row">
+  <div class="col-sm-12">
+    <ul class="shows">
+      {% for item in shows %}
+      <li id={{item.id}}>
+        <form method="post" action="/admin/{{item.id}}" class="btn btn-danger pull-right">{% csrf-field %}
+<input type="submit" class="btn btn-danger" value="x" />
+        </form>
+        <time>{{item.created_on | date:"dd-mm-yyyy hh:mm"}}</time>
+        <p> - {{item.show_name}}</p>
+      </li>
+      {% endfor %}
+      </ul>
+  </div>
+</div>
+<div class="row">
+    <div class="span12">
+        <form method="POST" action="/admin">
+                {% csrf-field %}
+                <p>
+                    Name:
+                    <input class="form-control"
+                           type="text"
+                           name="show_name"
+                           value="{{show_name}}" />
+                    Slot:
+                    <input class="form-control"
+                           type="radio"
+                           name="slot"
+                           value="1"> 10 a.m - 2 p.m
+
+                    <input class="form-control"
+                           type="radio"
+                           name="slot"
+                           value="2"> 3 p.m - 7 p.m
+
+                    <input class="form-control"
+                           type="radio"
+                           name="slot"
+                           value="3"> 7 p.m - 11 p.m
+
+                    <input class="form-control"
+                           type="radio"
+                           name="slot"
+                           value="4"> 12 a.m - 4 a.m
+                </p>
+                {% if errors.show_name %}
+                <div class="alert alert-danger">{{errors.show_name|join}}</div>
+                {% endif %}
+                <input type="submit" class="btn btn-primary" value="create" />
+        </form>
+    </div>
+</div>
+{% endblock %}
