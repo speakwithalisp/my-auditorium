@@ -3,6 +3,9 @@ body {
 	font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
     height: 100%;
 }
+shows{
+    background-color: green;
+}
 .navbar {
   margin-bottom: 10px;
   border-radius: 0px;

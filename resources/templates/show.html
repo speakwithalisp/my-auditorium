@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="row">
+  <div class="col-sm-12">
+    <h1>{{show.show_name}}</h1>
+    <h4>Slot: {{show.slot}}</h4>
+    {% if success %}
+    <div class="btn-success">{{success|join}}</div>
+    {% endif %}
+    <hr/>
+    <form method="POST" action="/show/{{show_id}}" class="form form-control">
+          {% csrf-field %}
+          {% for seat in available_seats %}
+          <input class="form form-control" type="submit" name="seat_id" value="{{seat.id}}" style="float:left; width:5%;"/>
+     {% endfor %} 
+    </form>
+    </div>
+  </div>
+{% endblock %}

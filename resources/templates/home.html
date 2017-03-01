@@ -7,28 +7,20 @@
 </div>
 <div class="row">
   <div class="col-sm-12">
-    <ul class="shows">
+    <h3> Available Shows </h3>
+    <div class="col-sm-12">
       {% for item in shows %}
-    <form method="POST" id={{item.id}} action="/" class="btn">
-      {% csrf-field %}
-      <p> - {{item.show_name}}</p>
-      <p> - Slot {{item.slot}}</p>
-      {% if errors.seat_id%}
-      <div class="alert alert-danger">
-{errors.seat_id|join}
+    <div class="row shows">
+      <a href="/show/{{item.id}}">
+        <div class="col-sm-8">
+          <h3>{{item.show_name}}</h3>
+        </div>
+        <div class="col-sm-4 pull-right">
+          <h4>Slot: {{item.slot}}</h4>
+        </div>
+      </a>
       </div>
-      {% endif %}
-        <select form="{{item.id}}" name="seat_id"> 
-          {% for seat in seats %}
-          <option value="{{seat.id}}">{{seat.seat_name}}</option>
-          {% endfor %}
-          </select>
-<input type="submit" name="show_id" class="btn btn-success pull-right" value="{{item.id}}" />
-        </form>
-      </li>
       {% endfor %}
-      </ul>
-      </form>
     </div>
   </div>
 {% endblock %}
